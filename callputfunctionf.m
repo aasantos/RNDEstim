@@ -29,15 +29,13 @@ ddf = zeros(m,1);
 nc = length(callstrike);
 np = length(putstrike);
 options = optimoptions('lsqlin','Display','off');
-% Aeq = [0 0   0 -1 0 0 0 1;
-%     0 0  -1  0 0 0 1 0;
-%     0 -1  0  0 0 1 0 0];
-% beq = [0;0;exp(-r*tau)];
+%
 Aeq = [0 0  -1  0 0 0 1 0;
     0 -1  0  0 0 1 0 0];
 beq = [0;exp(-r*tau)];
 lb = [0   -exp(-r*tau) 0  -Inf   0       0         0   -Inf];
 ub = [Inf  0           Inf Inf   Inf exp(-r*tau)  Inf  Inf];
+
 [yc,XXc] = XX(callstrike,callprice,callopenint,x0(1),hc);
 [yp,XXp] = XX(putstrike,putprice,putopenint,x0(1),hp);
 
@@ -60,7 +58,5 @@ for i=2:m
     df(i) = beta(2);
     ddf(i) = beta(3);
 end
-
-
-
+%
 end
