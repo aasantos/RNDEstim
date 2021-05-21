@@ -5,25 +5,19 @@ with maturity date at May 18, 2018. The MATLAB data format files are vixData.mat
 There is a series of functions used to implement the RND estimation and respective analysis:
 
 areadensity.m <br />
-entropy.m
-
-minMatrix.m
-
-callputfunctionf.m
-
-npcallputoptimLG.m
-
-optimalbandwidth.m
-
-cibootstrap.m
+entropy.m <br />
+minMatrix.m <br />
+callputfunctionf.m <br />
+npcallputoptimLG.m <br />
+optimalbandwidth.m <br />
+cibootstrap.m <br />
 
 #
 
 Two scripts (functions) are defined applied to do the analysis for VIX and S&P500
 
-vix.m
-
-sp500.m
+vix.m <br />
+sp500.m <br />
 
 By running the scripts (functions), it loads the data, calculates the optimal
 bandwidth values, estimates the respective RNDs, sequential local and global, and
