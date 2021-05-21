@@ -5,18 +5,14 @@ with maturity date at May 18, 2018. The MATLAB data format files are vixData.mat
 There is a series of functions used to implement the RND estimation and respective analysis:
 
 areadensity.m
-
 entropy.m
-
 minMatrix.m
-
 callputfunctionf.m
-
 npcallputoptimLG.m
-
 optimalbandwidth.m
-
 cibootstrap.m
+
+
 Two scripts (functions) are defined applied to do the analysis for VIX and S&P500
 vix.m
 sp500.m
