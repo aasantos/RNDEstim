@@ -21,10 +21,11 @@ cibootstrap.m
 #
 
 Two scripts (functions) are defined applied to do the analysis for VIX and S&P500
+
 vix.m
+
 sp500.m
 
-#
 By running the scripts (functions), it loads the data, calculates the optimal
 bandwidth values, estimates the respective RNDs, sequential local and global, and
 implements a bootstrap analysis to define confidence intervals. The results are
