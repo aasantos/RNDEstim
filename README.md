@@ -4,8 +4,7 @@ Data available: sample of data from VIX and S&P500 options contracts, from April
 with maturity date at May 18, 2018. The MATLAB data format files are vixData.mat and sp500Data.mat
 There is a series of functions used to implement the RND estimation and respective analysis:
 
-areadensity.m
-
+areadensity.m <br />
 entropy.m
 
 minMatrix.m
