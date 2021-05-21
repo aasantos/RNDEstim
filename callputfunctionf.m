@@ -35,10 +35,10 @@ Aeq = [0 0  -1  0 0 0 1 0;
 beq = [0;exp(-r*tau)];
 lb = [0   -exp(-r*tau) 0  -Inf   0       0         0   -Inf];
 ub = [Inf  0           Inf Inf   Inf exp(-r*tau)  Inf  Inf];
-
+%
 [yc,XXc] = XX(callstrike,callprice,callopenint,x0(1),hc);
 [yp,XXp] = XX(putstrike,putprice,putopenint,x0(1),hp);
-
+%
 X = [XXc zeros(nc,4);zeros(np,4) XXp];
 y = [yc;yp];
 beta = lsqlin(X,y,[],[],Aeq,beq,lb,ub,[],options);
