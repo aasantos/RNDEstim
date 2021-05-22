@@ -12,7 +12,10 @@ index = putstrike > 23 & putstrike < 29;
 putstrike = putstrike(index);
 putprice = putprice(index);
 putopenint = putopenint(index);
-%
+%%
+r = 0.02;
+tau = 1/12;
+%%
 %
 %% Optimal bandwith choice (It may take several hours to run)
 %
@@ -48,9 +51,6 @@ S.ngrid = 53;
 %  approximated by simulation obtained through bootstrap
 %
 x0 = linspace(23.5,28.5,300);
-r = 0.02 ;
-tau = 1/12;
-%
 niter = 5000;
 SI.callstrike = callstrike;
 SI.callprice = callprice;
@@ -71,7 +71,7 @@ SB = cibootstrap(SI);
 %  comparison of sample and estimated mean function for calls and puts
 %  using the sequential local and the global approach
 %
-x0 = linspace(23.5,28.5,100);
+x0 = unique([callstrike;putstrike]);
 S.callstrike = callstrike;
 S.callprice = callprice;
 S.callopenint = callopenint;
@@ -89,7 +89,7 @@ S.hp = hoptim(2);
 S1 = npcallputoptimLG(S);
 %
 subplot(1,2,1)
-plot(callstrike,callprice,'.','color','blue')
+plot(callstrike,callprice,'.','color',[0.15 0.15 0.15])
 xlabel('strikes','FontSize',14)
 ylabel('prices','FontSize',14)
 title('S&P500 - call and put; sample and mean','FontSize',18)
@@ -97,7 +97,7 @@ hold on
 plot(x0,S1.call,'+','color','blue')
 plot(S1.x,S1.callG,'o','color','red')
 xlim([23.5 28.25])
-plot(putstrike,putprice,'.','color','red')
+plot(putstrike,putprice,'.','color',[0.15 0.15 0.15])
 plot(x0,S1.put,'+','color','blue')
 plot(S1.x,S1.putG,'o','color','red')
 hold off
