@@ -12,7 +12,9 @@ index = putstrike > 9 & putstrike < 41;
 putstrike = putstrike(index);
 putprice = putprice(index);
 putopenint = putopenint(index);
-%
+%%
+r = 0.02 ;
+tau = 1/12;
 %
 %% Optimal bandwith choice (It may take several hours to run)
 %
@@ -28,8 +30,8 @@ S.putprice = putprice;
 S.putstrike = putstrike;
 S.putopenint = putopenint;
 %
-S.r = 0.02 ;
-S.tau = 1/12;
+S.r = r ;
+S.tau = tau;
 %
 S.hcmin = 1.0;
 S.hcmax = 2.0;
@@ -48,9 +50,6 @@ S.ngrid = 53;
 %  approximated by simulation obtained through bootstrap
 %
 x0 = linspace(10.2,37,300);
-r = 0.02 ;
-tau = 1/12;
-%
 niter = 5000;
 SI.callstrike = callstrike;
 SI.callprice = callprice;
@@ -71,7 +70,7 @@ SB = cibootstrap(SI);
 %  comparison of sample and estimated mean function for calls and puts
 %  using the sequential local and the global approach
 %
-x0 = linspace(10.2,37,100);
+x0=unique([callstrike;putstrike]);
 S.callstrike = callstrike;
 S.callprice = callprice;
 S.callopenint = callopenint;
@@ -89,15 +88,15 @@ S.hp = hoptim(2);
 S1 = npcallputoptimLG(S);
 %
 subplot(1,2,1)
-plot(callstrike,callprice,'.','color','blue')
+plot(callstrike,callprice,'.','color',[0.15 0.15 0.15])
 xlabel('strikes','FontSize',14)
 ylabel('prices','FontSize',14)
-title('S&P500 - call and put; sample and mean','FontSize',18)
+title('VIX - call and put; sample and mean','FontSize',18)
 hold on
 plot(x0,S1.call,'+','color','blue')
 plot(S1.x,S1.callG,'o','color','red')
-xlim([23.5 28.25])
-plot(putstrike,putprice,'.','color','red')
+xlim([10.2 37])
+plot(putstrike,putprice,'.','color',[0.15 0.15 0.15])
 plot(x0,S1.put,'+','color','blue')
 plot(S1.x,S1.putG,'o','color','red')
 hold off
@@ -125,10 +124,11 @@ subplot(1,2,2)
 plot(x0,exp(r*tau)*S1.ddcall,'LineWidth',1.25,'color','blue')
 xlabel('S_T','FontSize',14)
 ylabel('density','FontSize',14)
-title('S&P500 - risk-neutral density','FontSize',18)
+title('VIX - risk-neutral density','FontSize',18)
 hold on
 plot(x0,exp(r*tau)*S1.ddcallG,'color','red','LineWidth',1.25)
 xlim([10.2 37])
+ylim([0 0.161])
 hold off
 %% Results from the bootstrap analysis
 %
@@ -148,10 +148,11 @@ end
 %
 subplot(1,2,1)
 plot(x0,qqval(:,3),'--','color','blue','LineWidth',1.25)
-xlabel('S_T','FontSize',12)
-ylabel('density','FontSize',12)
-title('S&P500 - risk-neutral density quantiles','FontSize',16)
+xlabel('S_T','FontSize',14)
+ylabel('density','FontSize',14)
+title('VIX - risk-neutral density quantiles','FontSize',18)
 xlim([10.2 37])
+ylim([0 0.28])
 hold on
 plot(x0,qqvalg(:,3),'--','color','red','LineWidth',1.25)
 %
@@ -172,9 +173,9 @@ subplot(1,2,2)
 plot(x0,diff1,'LineWidth',1.25,'color','blue')
 xlabel('S_T','FontSize',14)
 ylabel('difference','FontSize',14)
-title('S&P500 - difference of quantiles','FontSize',18)
+title('VIX - difference of quantiles','FontSize',18)
 xlim([10.2 37])
 hold on
 plot(x0,diff2,'LineWidth',1.25,'color','red')
 hold off
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
