@@ -15,7 +15,6 @@ putopenint = putopenint(index);
 %%
 r = 0.02;
 tau = 1/12;
-%%
 %
 %% Optimal bandwith choice (It may take several hours to run)
 %
@@ -31,8 +30,8 @@ S.putprice = putprice;
 S.putstrike = putstrike;
 S.putopenint = putopenint;
 %
-S.r = 0.02 ;
-S.tau = 1/12;
+S.r = r;   
+S.tau = tau;
 %
 S.hcmin = 0.15;
 S.hcmax = 0.9;
@@ -71,7 +70,7 @@ SB = cibootstrap(SI);
 %  comparison of sample and estimated mean function for calls and puts
 %  using the sequential local and the global approach
 %
-x0 = unique([callstrike;putstrike]);
+x0=unique([callstrike;putstrike]);
 S.callstrike = callstrike;
 S.callprice = callprice;
 S.callopenint = callopenint;
@@ -127,7 +126,7 @@ xlabel('S_T','FontSize',14)
 ylabel('density','FontSize',14)
 title('S&P500 - risk-neutral density','FontSize',18)
 hold on
-plot(x0,exp(r*tau)*S1.ddcallG,'color','red','LineWidth',1.25)
+plot(x0,exp(r*tau)*S1.ddcallG,'o','color','red','LineWidth',1.25)
 xlim([23.5 28.5])
 hold off
 %% Results from the bootstrap analysis
@@ -152,6 +151,7 @@ xlabel('S_T','FontSize',12)
 ylabel('density','FontSize',12)
 title('S&P500 - risk-neutral density quantiles','FontSize',16)
 xlim([23.5 28.5])
+ylim([0 0.645])
 hold on
 plot(x0,qqvalg(:,3),'--','color','red','LineWidth',1.25)
 %
