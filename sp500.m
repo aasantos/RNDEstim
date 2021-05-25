@@ -40,7 +40,7 @@ S.hpmax = 0.9;
 S.ngrid = 53;
 %
 [hoptim,cvmat,areamat,diffmat,entropymat] = optimalbandwidth(S);
-%% Bootstrap Analysis (It may take several hours to run)
+%% Bootstrap Analysis 
 %
 %  It uses the function cibootstrap, which has as input a structure, where
 %  named SI with the corresponding fields. The function gives a structured
