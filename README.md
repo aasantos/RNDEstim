@@ -1,4 +1,4 @@
-# RNDEstim
+# Data sample and MATLAB code for VIX and S&P500 options contracts analysis
 Estimate RND functions using option prices
 Data available: sample of data from VIX and S&P500 options contracts, from April 16 to April 20, 2018, 
 with maturity date at May 18, 2018. The MATLAB data format files are vixData.mat and sp500Data.mat
